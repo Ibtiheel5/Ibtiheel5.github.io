@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ibtihel Belhouchet — Data Scientist & IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;0,700;1,300;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --rose:#D4537E; --rose-light:#FBEAF0; --rose-mid:#ED93B1; --rose-deep:#72243E;
+  --plum:#534AB7; --plum-light:#EEEDFE; --plum-mid:#AFA9EC; --plum-deep:#26215C;
+  --teal:#1D9E75; --teal-light:#E1F5EE; --teal-mid:#5DCAA5;
+  --amber:#BA7517; --amber-light:#FAEEDA; --amber-mid:#EF9F27;
+  --blue:#185FA5; --blue-light:#E6F1FB; --blue-mid:#85B7EB;
+  --coral:#993C1D; --coral-light:#FAECE7; --coral-mid:#F0997B;
+  --cream:#fdf8f4; --white:#fff; --ink:#1a1118; --ink2:#3d2d3a; --muted:#8a7585;
+  --border:rgba(212,83,126,0.12);
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;padding:1rem 4rem;display:flex;justify-content:space-between;align-items:center;background:rgba(253,248,244,0.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:700;background:linear-gradient(135deg,var(--rose),var(--plum));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:400;color:var(--muted);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--rose)}
+.nav-cta{background:linear-gradient(135deg,var(--rose),var(--plum));color:#fff !important;padding:0.5rem 1.2rem;border-radius:50px;font-weight:500 !important}
+.nav-cta:hover{opacity:0.88}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:7rem 4rem 4rem;position:relative;overflow:hidden}
+.hero-blob{position:absolute;border-radius:50%;pointer-events:none;animation:float 8s ease-in-out infinite}
+.blob1{width:420px;height:420px;background:radial-gradient(circle,rgba(212,83,126,0.13),transparent 70%);top:-80px;right:5%}
+.blob2{width:320px;height:320px;background:radial-gradient(circle,rgba(83,74,183,0.11),transparent 70%);bottom:10%;left:-60px;animation-delay:-4s}
+.blob3{width:200px;height:200px;background:radial-gradient(circle,rgba(29,158,117,0.1),transparent 70%);top:40%;right:15%;animation-delay:-2s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-24px)}}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:500;color:var(--rose);margin-bottom:1.4rem;animation:fadeUp 0.7s 0.1s both}
+.eyebrow-dot{width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--plum));flex-shrink:0}
+.hero-name{font-family:'Fraunces',serif;font-size:clamp(3.2rem,8.5vw,7rem);font-weight:700;line-height:0.92;color:var(--ink);margin-bottom:0.15em;animation:fadeUp 0.7s 0.2s both}
+.hero-name em{font-style:italic;font-weight:300;background:linear-gradient(135deg,var(--rose),var(--plum));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-desc{max-width:520px;font-size:1.05rem;color:var(--muted);line-height:1.85;margin:1.8rem 0 2rem;animation:fadeUp 0.7s 0.35s both}
+.hero-desc strong{color:var(--ink2);font-weight:500}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2.5rem;animation:fadeUp 0.7s 0.45s both}
+.chip{font-size:0.75rem;letter-spacing:0.06em;padding:5px 14px;border-radius:50px;font-weight:400;border:1px solid}
+.chip-rose{background:var(--rose-light);color:var(--rose-deep);border-color:rgba(212,83,126,0.25)}
+.chip-plum{background:var(--plum-light);color:var(--plum);border-color:rgba(83,74,183,0.25)}
+.chip-teal{background:var(--teal-light);color:#085041;border-color:rgba(29,158,117,0.25)}
+.chip-blue{background:var(--blue-light);color:var(--blue);border-color:rgba(24,95,165,0.25)}
+.chip-amber{background:var(--amber-light);color:var(--amber);border-color:rgba(186,117,23,0.25)}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 0.7s 0.55s both}
+.btn{font-family:'DM Sans',sans-serif;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;padding:0.8rem 2rem;border-radius:50px;text-decoration:none;cursor:pointer;transition:all 0.25s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary{background:linear-gradient(135deg,var(--rose),var(--plum));color:#fff;border:none}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(212,83,126,0.3)}
+.btn-outline{background:transparent;color:var(--ink2);border:1.5px solid rgba(212,83,126,0.3)}
+.btn-outline:hover{border-color:var(--rose);color:var(--rose)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px}
+.hero-scroll span{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted)}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--rose-mid),transparent);animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:0.4;transform:scaleY(0.6)}50%{opacity:1;transform:scaleY(1)}}
+
+/* SECTIONS */
+section{padding:6rem 4rem}
+.s-label{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:500;color:var(--rose);display:flex;align-items:center;gap:10px;margin-bottom:0.8rem}
+.s-label::after{content:'';flex:1;max-width:40px;height:1px;background:var(--rose-mid)}
+.s-title{font-family:'Fraunces',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:600;color:var(--ink);line-height:1.05}
+.s-title em{font-style:italic;font-weight:300;color:var(--plum)}
+.s-sub{font-size:0.95rem;color:var(--muted);margin-top:0.6rem;max-width:560px}
+
+/* PROJECTS */
+#projects{background:var(--white)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;margin-top:3rem}
+
+/* Featured card (spans full row) */
+.pcard-featured{grid-column:1/-1}
+
+.pcard{border-radius:20px;overflow:hidden;border:1px solid var(--border);background:var(--white);transition:transform 0.3s,box-shadow 0.3s;position:relative}
+.pcard:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,0.08)}
+.pcard-header{padding:2rem 2rem 1.5rem;position:relative;overflow:hidden}
+.ph-rose{background:linear-gradient(135deg,#FBEAF0,#F4C0D1)}
+.ph-plum{background:linear-gradient(135deg,#EEEDFE,#CECBF6)}
+.ph-teal{background:linear-gradient(135deg,#E1F5EE,#9FE1CB)}
+.ph-blue{background:linear-gradient(135deg,#E6F1FB,#B5D4F4)}
+.ph-amber{background:linear-gradient(135deg,#FAEEDA,#FAC775)}
+.ph-coral{background:linear-gradient(135deg,#FAECE7,#F5C4B3)}
+.ph-deco{position:absolute;right:-20px;top:-20px;width:120px;height:120px;border-radius:50%;opacity:0.22}
+.ph-rose .ph-deco{background:var(--rose)}
+.ph-plum .ph-deco{background:var(--plum)}
+.ph-teal .ph-deco{background:var(--teal)}
+.ph-blue .ph-deco{background:var(--blue)}
+.ph-amber .ph-deco{background:var(--amber)}
+.ph-coral .ph-deco{background:var(--coral)}
+.pcard-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.2rem;position:relative;z-index:1}
+.pi-rose{background:rgba(212,83,126,0.15)} .pi-plum{background:rgba(83,74,183,0.15)}
+.pi-teal{background:rgba(29,158,117,0.15)} .pi-blue{background:rgba(24,95,165,0.15)}
+.pi-amber{background:rgba(186,117,23,0.15)} .pi-coral{background:rgba(153,60,29,0.15)}
+.pcard-meta{font-size:0.72rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.4rem;position:relative;z-index:1}
+.pm-rose{color:var(--rose-deep)} .pm-plum{color:var(--plum)} .pm-teal{color:#085041}
+.pm-blue{color:var(--blue)} .pm-amber{color:var(--amber)} .pm-coral{color:var(--coral)}
+.pcard-title{font-family:'Fraunces',serif;font-size:1.7rem;font-weight:700;line-height:1.1;position:relative;z-index:1}
+.pt-rose{color:var(--rose-deep)} .pt-plum{color:var(--plum-deep)} .pt-teal{color:#04342C}
+.pt-blue{color:#042C53} .pt-amber{color:#412402} .pt-coral{color:var(--coral)}
+
+/* Featured header layout */
+.pcard-featured .pcard-header{display:grid;grid-template-columns:1fr auto;align-items:start;gap:1rem}
+.ph-featured-left{}
+.ph-featured-badge{
+  background:rgba(212,83,126,0.12);color:var(--rose-deep);
+  font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;
+  padding:6px 14px;border-radius:50px;border:1px solid rgba(212,83,126,0.2);
+  white-space:nowrap;margin-top:4px;
+}
+
+.pcard-body{padding:1.5rem 2rem 2rem}
+.pcard-desc{font-size:0.9rem;color:var(--muted);line-height:1.85;margin-bottom:1.2rem}
+.pcard-wip{display:inline-flex;align-items:center;gap:6px;font-size:0.75rem;font-weight:500;color:var(--amber);background:var(--amber-light);border:1px solid rgba(186,117,23,0.2);padding:4px 12px;border-radius:50px;margin-bottom:1rem}
+.wip-dot{width:6px;height:6px;border-radius:50%;background:var(--amber-mid);animation:blink 1.5s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.pcard-modules{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.2rem}
+.pmod{font-size:0.75rem;padding:4px 12px;border-radius:8px;font-weight:400;border:1px solid}
+.pmod-done{background:var(--teal-light);color:#085041;border-color:rgba(29,158,117,0.2)}
+.pmod-wip{background:var(--amber-light);color:var(--amber);border-color:rgba(186,117,23,0.2)}
+.pcard-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.8rem}
+.ptag{font-size:0.72rem;padding:3px 12px;border-radius:50px;font-weight:400;border:1px solid}
+.ptag-rose{background:var(--rose-light);color:var(--rose-deep);border-color:rgba(212,83,126,0.2)}
+.ptag-plum{background:var(--plum-light);color:var(--plum);border-color:rgba(83,74,183,0.2)}
+.ptag-teal{background:var(--teal-light);color:#085041;border-color:rgba(29,158,117,0.2)}
+.ptag-blue{background:var(--blue-light);color:var(--blue);border-color:rgba(24,95,165,0.2)}
+.ptag-amber{background:var(--amber-light);color:var(--amber);border-color:rgba(186,117,23,0.2)}
+.ptag-coral{background:var(--coral-light);color:var(--coral);border-color:rgba(153,60,29,0.2)}
+.ptag-gray{background:#f5f3f0;color:#5a5259;border-color:rgba(0,0,0,0.08)}
+.pcard-links{display:flex;gap:10px;flex-wrap:wrap}
+.plink{font-size:0.75rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:500;text-decoration:none;padding:0.55rem 1.1rem;border-radius:50px;display:inline-flex;align-items:center;gap:6px;transition:all 0.2s;border:none}
+.pl-rose{background:var(--rose);color:#fff} .pl-rose:hover{background:var(--rose-deep)}
+.pl-plum{background:var(--plum);color:#fff} .pl-plum:hover{background:#3C3489}
+.pl-teal{background:var(--teal);color:#fff} .pl-teal:hover{background:#0F6E56}
+.pl-blue{background:var(--blue);color:#fff} .pl-blue:hover{background:#0C447C}
+.pl-amber{background:var(--amber);color:#fff} .pl-amber:hover{background:#854F0B}
+.pl-coral{background:var(--coral);color:#fff} .pl-coral:hover{background:#712B13}
+.pl-ghost{border:1.5px solid var(--border) !important;color:var(--muted);background:transparent}
+.pl-ghost:hover{border-color:var(--rose-mid) !important;color:var(--rose)}
+
+/* ARCH diagram inside featured card */
+.arch-box{
+  background:rgba(253,248,244,0.8);border:1px solid var(--border);
+  border-radius:12px;padding:1rem 1.2rem;margin-bottom:1.4rem;
+  font-family:'DM Sans',monospace;font-size:0.78rem;color:var(--ink2);
+  line-height:1.9;
+}
+
+/* SKILLS */
+#skills{background:linear-gradient(160deg,var(--rose-light),var(--plum-light) 50%,var(--teal-light))}
+.skills-inner{display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:start;margin-top:3rem}
+.skills-about p{font-size:0.95rem;color:var(--ink2);line-height:1.9;margin-bottom:1rem}
+.skills-about p em{font-style:italic;color:var(--rose);font-family:'Fraunces',serif}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:2rem}
+.stat{background:var(--white);border-radius:16px;padding:1.4rem;border:1px solid var(--border);text-align:center}
+.stat-val{font-family:'Fraunces',serif;font-size:2.2rem;font-weight:700;line-height:1;background:linear-gradient(135deg,var(--rose),var(--plum));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
+.stat-lab{font-size:0.75rem;color:var(--muted);line-height:1.3}
+.skills-col{display:flex;flex-direction:column;gap:1.2rem}
+.sg{background:var(--white);border-radius:16px;padding:1.4rem 1.6rem;border:1px solid var(--border)}
+.sg-head{display:flex;align-items:center;gap:10px;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;margin-bottom:0.9rem}
+.sg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.sg-rose .sg-dot{background:var(--rose)} .sg-rose span{color:var(--rose-deep)}
+.sg-plum .sg-dot{background:var(--plum)} .sg-plum span{color:var(--plum)}
+.sg-teal .sg-dot{background:var(--teal)} .sg-teal span{color:#085041}
+.sg-blue .sg-dot{background:var(--blue)} .sg-blue span{color:var(--blue)}
+.sg-pills{display:flex;flex-wrap:wrap;gap:6px}
+.sp{font-size:0.8rem;padding:4px 13px;border-radius:50px;background:#f5f3f0;color:var(--ink2);border:1px solid rgba(0,0,0,0.06)}
+
+/* CONTACT */
+#contact{background:var(--ink);position:relative;overflow:hidden}
+.cb1{position:absolute;width:500px;height:500px;top:-150px;right:-100px;border-radius:50%;background:radial-gradient(circle,rgba(212,83,126,0.15),transparent 65%)}
+.cb2{position:absolute;width:350px;height:350px;bottom:-100px;left:-80px;border-radius:50%;background:radial-gradient(circle,rgba(83,74,183,0.12),transparent 65%)}
+.contact-inner{max-width:640px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.contact-badge{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:500;color:var(--rose-mid);margin-bottom:1.5rem}
+.contact-big{font-family:'Fraunces',serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;color:#fff;line-height:1.05;margin-bottom:1.2rem}
+.contact-big em{font-style:italic;font-weight:300;color:var(--rose-mid)}
+.contact-sub{color:rgba(255,255,255,0.5);font-size:0.95rem;margin-bottom:2.8rem;line-height:1.8}
+.contact-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.cbtn{font-family:'DM Sans',sans-serif;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;padding:0.85rem 2rem;border-radius:50px;text-decoration:none;cursor:pointer;transition:all 0.25s}
+.cbtn-primary{background:linear-gradient(135deg,var(--rose),var(--plum));color:#fff;border:none}
+.cbtn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(212,83,126,0.4)}
+.cbtn-outline{background:transparent;color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.18)}
+.cbtn-outline:hover{border-color:var(--rose-mid);color:var(--rose-mid)}
+
+footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.07);padding:1.8rem 4rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+footer p{font-size:0.78rem;color:rgba(255,255,255,0.35)}
+footer a{color:var(--rose-mid);text-decoration:none}
+
+.gh-svg{display:inline-block;vertical-align:middle}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem} .nav-links{gap:1rem}
+  .hero,section{padding-left:1.5rem;padding-right:1.5rem}
+  .hero{padding-top:6rem}
+  .skills-inner{grid-template-columns:1fr;gap:2.5rem}
+  .pcard-featured .pcard-header{grid-template-columns:1fr}
+  footer{padding:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Ibtihel B.</span>
+  <div class="nav-links">
+    <a href="#projects">Projets</a>
+    <a href="#skills">Profil</a>
+    <a href="#contact">Contact</a>
+    <a href="https://github.com/Ibtiheel5" target="_blank" class="nav-cta">GitHub</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="hero-blob blob3"></div>
+  <div class="hero-eyebrow"><span class="eyebrow-dot"></span>Data Science · IA · Full Stack</div>
+  <h1 class="hero-name">Belhouchet<br><em>Ibtihel</em></h1>
+  <p class="hero-desc">
+    Étudiante passionnée par la <strong>donnée</strong>, l'<strong>intelligence artificielle</strong> et les applications <strong>full stack</strong>.
+    Je construis des solutions concrètes — du diagnostic médical par IA à la gestion de systèmes critiques en entreprise.
+  </p>
+  <div class="hero-chips">
+    <span class="chip chip-rose">Machine Learning</span>
+    <span class="chip chip-plum">Deep Learning</span>
+    <span class="chip chip-teal">Computer Vision</span>
+    <span class="chip chip-blue">Full Stack</span>
+    <span class="chip chip-amber">C++ / Qt</span>
+    <span class="chip chip-plum">Python</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+      Voir mes projets
+    </a>
+    <a href="https://github.com/Ibtiheel5" target="_blank" class="btn btn-outline">GitHub →</a>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll</span></div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="s-label">01 — Projets</div>
+  <h2 class="s-title">Ce que j'ai <em>construit</em></h2>
+  <p class="s-sub">6 projets couvrant l'IA médicale, le machine learning, le full stack web et les applications desktop.</p>
+
+  <div class="projects-grid">
+
+    <!-- ① CHEST IA / MedIA Platform — FEATURED -->
+    <div class="pcard pcard-featured">
+      <div class="pcard-header ph-plum">
+        <div class="ph-deco"></div>
+        <div class="ph-featured-left">
+          <div class="pcard-icon pi-plum">🧠</div>
+          <div class="pcard-meta pm-plum">Projet phare · BI/AI · Full Stack Médical</div>
+          <h3 class="pcard-title pt-plum">MedIA Platform</h3>
+        </div>
+        <div class="ph-featured-badge">Projet en cours 🔬</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-wip"><span class="wip-dot"></span>En cours de développement</div>
+        <p class="pcard-desc">
+          Plateforme complète de télémédecine assistée par IA. Les patients prennent rendez-vous, les médecins accèdent au dossier et lancent une analyse IA sur les imageries médicales. Le modèle détecte plusieurs pathologies : tumeurs cérébrales, opacité pulmonaire, maladies thoraciques (10+ classes) et d'autres en cours d'intégration.
+        </p>
+        <div style="margin-bottom:1rem">
+          <div style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--plum);font-weight:500;margin-bottom:8px">Modules</div>
+          <div class="pcard-modules">
+            <span class="pmod pmod-done">✓ Rendez-vous patient</span>
+            <span class="pmod pmod-done">✓ Dashboard médecin</span>
+            <span class="pmod pmod-done">✓ Brain Tumor Detection</span>
+            <span class="pmod pmod-done">✓ Lung Opacity</span>
+            <span class="pmod pmod-done">✓ Thoracic (10 classes)</span>
+            <span class="pmod pmod-wip">⏳ Autres pathologies</span>
+            <span class="pmod pmod-wip">⏳ Rapport automatique</span>
+          </div>
+        </div>
+        <div class="pcard-tags">
+          <span class="ptag ptag-plum">Python</span>
+          <span class="ptag ptag-plum">TensorFlow / Keras</span>
+          <span class="ptag ptag-plum">CNN Multi-classes</span>
+          <span class="ptag ptag-plum">Grad-CAM</span>
+          <span class="ptag ptag-teal">Medical Imaging</span>
+          <span class="ptag ptag-blue">FastAPI</span>
+          <span class="ptag ptag-blue">React</span>
+          <span class="ptag ptag-gray">PostgreSQL</span>
+        </div>
+        <div class="pcard-links">
+          <a href="https://github.com/Ibtiheel5/BI-AI_Project" target="_blank" class="plink pl-plum">
+            <svg class="gh-svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a href="https://github.com/Ibtiheel5/BI-AI_Project/blob/master/README.md" target="_blank" class="plink pl-ghost">Readme →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② MOVIE ML -->
+    <div class="pcard">
+      <div class="pcard-header ph-rose">
+        <div class="ph-deco"></div>
+        <div class="pcard-icon pi-rose">🎬</div>
+        <div class="pcard-meta pm-rose">Projet 02 · Machine Learning</div>
+        <h3 class="pcard-title pt-rose">Movie_ML</h3>
+      </div>
+      <div class="pcard-body">
+        <p class="pcard-desc">Moteur de recommandation de films combinant filtrage collaboratif et analyse du contenu. Pipeline ML complet avec EDA, REST API FastAPI, frontend React, Docker et MLflow pour le suivi des expériences.</p>
+        <div class="pcard-tags">
+          <span class="ptag ptag-rose">Python</span>
+          <span class="ptag ptag-rose">Scikit-learn</span>
+          <span class="ptag ptag-blue">FastAPI</span>
+          <span class="ptag ptag-blue">React</span>
+          <span class="ptag ptag-teal">MLflow</span>
+          <span class="ptag ptag-gray">Docker</span>
+        </div>
+        <div class="pcard-links">
+          <a href="https://github.com/Ibtiheel5/movie-ml-fullstack" target="_blank" class="plink pl-rose">
+            <svg class="gh-svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a href="#" class="plink pl-ghost">Readme →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ BOURSES UNIVERSITAIRES -->
+    <div class="pcard">
+      <div class="pcard-header ph-teal">
+        <div class="ph-deco"></div>
+        <div class="pcard-icon pi-teal">🎓</div>
+        <div class="pcard-meta pm-teal">Projet 03 · Full Stack Web</div>
+        <h3 class="pcard-title pt-teal">Bourses Universitaires</h3>
+      </div>
+      <div class="pcard-body">
+        <p class="pcard-desc">Plateforme de gestion des bourses universitaires avec dashboards d'authentification, backend Node.js et interface frontend complète. Gestion des dossiers étudiants et suivi des demandes.</p>
+        <div class="pcard-tags">
+          <span class="ptag ptag-teal">Node.js</span>
+          <span class="ptag ptag-teal">Express</span>
+          <span class="ptag ptag-blue">Frontend JS</span>
+          <span class="ptag ptag-gray">Authentication</span>
+          <span class="ptag ptag-gray">Dashboard</span>
+        </div>
+        <div class="pcard-links">
+          <a href="https://github.com/Ibtiheel5/bourses_universitaires" target="_blank" class="plink pl-teal">
+            <svg class="gh-svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a href="https://github.com/Ibtiheel5/bourses_universitaires/blob/main/README.md" target="_blank" class="plink pl-ghost">Readme →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ④ SEAZENN -->
+    <div class="pcard">
+      <div class="pcard-header ph-blue">
+        <div class="ph-deco"></div>
+        <div class="pcard-icon pi-blue">🌊</div>
+        <div class="pcard-meta pm-blue">Projet 04 · Web Design</div>
+        <h3 class="pcard-title pt-blue">SeaZenn</h3>
+      </div>
+      <div class="pcard-body">
+        <p class="pcard-desc">Plateforme moderne de réservation de croisières. Site statique avec page d'accueil (destinations & offres), espace avis clients, formulaire de contact, et pages légales. Design fluide et navigation rapide sans backend.</p>
+        <div class="pcard-tags">
+          <span class="ptag ptag-blue">HTML / CSS</span>
+          <span class="ptag ptag-blue">JavaScript</span>
+          <span class="ptag ptag-gray">Site statique</span>
+          <span class="ptag ptag-gray">UX/UI Design</span>
+        </div>
+        <div class="pcard-links">
+          <a href="https://github.com/Ibtiheel5/seazenn-static-site
+" target="_blank" class="plink pl-blue">
+            <svg class="gh-svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a href="#" class="plink pl-ghost">Demo →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑤ SECURITY ALERTS -->
+    <div class="pcard">
+      <div class="pcard-header ph-coral">
+        <div class="ph-deco"></div>
+        <div class="pcard-icon pi-coral">🔒</div>
+        <div class="pcard-meta pm-coral">Projet 05 · Desktop App · C++/Qt</div>
+        <h3 class="pcard-title pt-coral">Gestion des Alertes Sécurité</h3>
+      </div>
+      <div class="pcard-body">
+        <p class="pcard-desc">Application desktop de gestion des incidents de cybersécurité en entreprise. Trois rôles (admin, employé, agent), tickets d'alerte, historique des incidents et chatbot intelligent pour les FAQ. Base Oracle.</p>
+        <div class="pcard-tags">
+          <span class="ptag ptag-coral">C++</span>
+          <span class="ptag ptag-coral">Qt Framework</span>
+          <span class="ptag ptag-amber">Oracle DB</span>
+          <span class="ptag ptag-gray">Chatbot</span>
+          <span class="ptag ptag-gray">Multi-rôles</span>
+        </div>
+        <div class="pcard-links">
+          <a href="https://github.com/Ibtiheel5" target="_blank" class="plink pl-coral">
+            <svg class="gh-svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a href="#" class="plink pl-ghost">Readme →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑥ PORTFOLIO -->
+    <div class="pcard">
+      <div class="pcard-header ph-amber">
+        <div class="ph-deco"></div>
+        <div class="pcard-icon pi-amber">🌸</div>
+        <div class="pcard-meta pm-amber">Projet 06 · Portfolio</div>
+        <h3 class="pcard-title pt-amber">Ce Portfolio</h3>
+      </div>
+      <div class="pcard-body">
+        <p class="pcard-desc">Portfolio personnel hébergé sur GitHub Pages. Design féminin et professionnel avec animations CSS, typographie Fraunces, palette rose × violet × teal et mise en avant de tous mes projets IA & dev.</p>
+        <div class="pcard-tags">
+          <span class="ptag ptag-amber">HTML / CSS</span>
+          <span class="ptag ptag-amber">Animations CSS</span>
+          <span class="ptag ptag-gray">GitHub Pages</span>
+          <span class="ptag ptag-gray">Responsive</span>
+        </div>
+        <div class="pcard-links">
+          <a href="https://github.com/Ibtiheel5/BLL_Ibtiheel.github.io" target="_blank" class="plink pl-amber">
+            <svg class="gh-svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            Source
+          </a>
+          <a href="https://ibtiheel5.github.io/BLL_Ibtiheel.github.io/" target="_blank" class="plink pl-ghost">Live →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="s-label">02 — Profil</div>
+  <h2 class="s-title">Compétences & <em>Parcours</em></h2>
+  <div class="skills-inner">
+    <div class="skills-about">
+      <p>Je suis <em>Ibtihel Belhouchet</em>, étudiante en data science et intelligence artificielle, basée en Tunisie.</p>
+      <p>Mes projets couvrent un large spectre : IA médicale, systèmes de recommandation full stack, applications desktop C++/Qt, et développement web. J'aime autant entraîner des modèles que les mettre en production.</p>
+      <p>J'accorde une importance particulière à l'interprétabilité des modèles et à l'expérience utilisateur — deux piliers d'une IA utile et responsable.</p>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-val">6</div><div class="stat-lab">Projets publiés</div></div>
+        <div class="stat"><div class="stat-val">AI</div><div class="stat-lab">+ Full Stack</div></div>
+        <div class="stat"><div class="stat-val">TN</div><div class="stat-lab">Tunisie</div></div>
+      </div>
+    </div>
+    <div class="skills-col">
+      <div class="sg">
+        <div class="sg-head sg-plum"><span class="sg-dot"></span><span>IA & Deep Learning</span></div>
+        <div class="sg-pills">
+          <span class="sp">TensorFlow</span><span class="sp">Keras</span><span class="sp">CNN</span>
+          <span class="sp">Grad-CAM</span><span class="sp">Medical Imaging</span><span class="sp">MLflow</span>
+        </div>
+      </div>
+      <div class="sg">
+        <div class="sg-head sg-rose"><span class="sg-dot"></span><span>Machine Learning</span></div>
+        <div class="sg-pills">
+          <span class="sp">Scikit-learn</span><span class="sp">Collaborative Filtering</span>
+          <span class="sp">Classification</span><span class="sp">Clustering</span><span class="sp">Pandas / NumPy</span>
+        </div>
+      </div>
+      <div class="sg">
+        <div class="sg-head sg-teal"><span class="sg-dot"></span><span>Full Stack & Dev</span></div>
+        <div class="sg-pills">
+          <span class="sp">Python</span><span class="sp">FastAPI</span><span class="sp">React</span>
+          <span class="sp">Node.js</span><span class="sp">C++ / Qt</span><span class="sp">HTML/CSS</span>
+        </div>
+      </div>
+      <div class="sg">
+        <div class="sg-head sg-blue"><span class="sg-dot"></span><span>Outils & DevOps</span></div>
+        <div class="sg-pills">
+          <span class="sp">Git / GitHub</span><span class="sp">Docker</span>
+          <span class="sp">Oracle DB</span><span class="sp">PostgreSQL</span><span class="sp">Jupyter</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="cb1"></div><div class="cb2"></div>
+  <div class="contact-inner">
+    <div class="contact-badge">
+      <span style="width:6px;height:6px;border-radius:50%;background:var(--rose-mid);display:inline-block"></span>
+      03 — Contact
+    </div>
+    <h2 class="contact-big">Travaillons<br><em>ensemble.</em></h2>
+    <p class="contact-sub">Ouverte aux opportunités de stage, projets collaboratifs et échanges autour de l'IA, data science, computer vision et développement full stack.</p>
+    <div class="contact-btns">
+      <a href="mailto:belhouchet.ibtihel@email.com" class="cbtn cbtn-primary">Envoyer un email</a>
+      <a href="https://github.com/Ibtiheel5" target="_blank" class="cbtn cbtn-outline">GitHub</a>
+      <a href="https://linkedin.com/in/belhouchet-ibtihel" target="_blank" class="cbtn cbtn-outline">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Ibtihel Belhouchet · <a href="https://github.com/Ibtiheel5/BLL_Ibtiheel.github.io" target="_blank">BLL_Ibtiheel.github.io</a></p>
+  <p style="color:var(--rose-mid)">Fait avec ♥ en Tunisie</p>
+</footer>
+
+</body>
+</html>
